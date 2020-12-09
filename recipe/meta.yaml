@@ -1,0 +1,32 @@
+{% set name = "influxdb" %}
+{% set version = "1.8.3" %}
+
+package:
+  name: {{ name|lower }}-server
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://dl.influxdata.com/influxdb/releases/{{ name }}-{{ version }}-static_linux_amd64.tar.gz
+  sha256: 6ab85388426bb3bec5e7091e6fb1f8ccc10bbdecff34c50e8d580a56d0310bf2
+
+build:
+  number: 1
+  no_link:
+    - etc/*
+    - var/log/influxdb/*
+  skip: true  # [win]
+
+about:
+  home: https://www.influxdata.com/
+  license: MIT-Clause
+  license_family: MIT
+  license_file: LICENSE
+  summary: InfluxDB is a time series platform
+  description: |
+    InfluxDB empowers developers to build IoT, analytics and monitoring software. 
+    It is purpose-built to handle the massive volumes and countless sources of 
+    time-stamped data produced by sensors, applications and infrastructure.
+  doc_url: https://docs.influxdata.com/
+  dev_url: https://github.com/influxdata/influxdb
+
